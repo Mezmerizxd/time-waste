@@ -396,3 +396,11 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Custom
+XenosCurrentProfile.xpr
+**/*.sln
+**/*.vcproj
+**/*.vcxproj
+**/*.vcxproj.filters
+Injector.exe
