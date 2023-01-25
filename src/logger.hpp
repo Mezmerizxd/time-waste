@@ -57,11 +57,13 @@ namespace TimeWaste
 			}
 
 			g_logger = this;
+			g_logger->raw_to_file("========================================", "\n");
 		}
 
 		~logger()
 		{
 			if (!m_did_console_exist)
+				g_logger->raw_to_file("========================================", "\n");
 				FreeConsole();
 
 			g_logger = nullptr;
