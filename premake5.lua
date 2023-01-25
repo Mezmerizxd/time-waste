@@ -142,7 +142,7 @@ workspace "time-waste"
     DeclareDebugOptions()
 
   project "time-waste"
-    location "time-waste"
+    location "src"
     kind "SharedLib"
     language "C++"
 
@@ -150,13 +150,13 @@ workspace "time-waste"
     objdir ("bin/int/" .. outputdir .. "/%{prj.name}")
 
     PrecompiledHeaderInclude = "common.hpp"
-    PrecompiledHeaderSource = "%{prj.name}/src/common.cpp"
+    PrecompiledHeaderSource = "src/common.cpp"
  
     files
     {
-      "%{prj.name}/src/**.hpp",
-      "%{prj.name}/src/**.cpp",
-      "%{prj.name}/src/**.asm"
+      "src/**.hpp",
+      "src/**.cpp",
+      "src/**.asm"
     }
 
     includedirs
@@ -167,7 +167,7 @@ workspace "time-waste"
       "%{IncludeDir.ImGui}",
       "%{IncludeDir.ImGuiImpl}",
       "%{IncludeDir.StackWalker}",
-      "%{prj.name}/src"
+      "src"
     }
 
     libdirs
