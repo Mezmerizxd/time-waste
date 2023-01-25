@@ -6,7 +6,15 @@ namespace TimeWaste
     enum Submenu : std::uint32_t {
 		Home,
 		Self,
-		Extra
+		Lobby,
+		Weapon,
+		Vehicle,
+		Teleport,
+		World,
+		ObjectSpawner,
+		Recovery,
+		Lua,
+		Settings,
 	};
 
 	class Menu
