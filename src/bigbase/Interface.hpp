@@ -81,7 +81,7 @@ namespace TimeWaste::BigBase {
 		float m_Width = 0.23f;
 		float m_DrawBaseY{};
 		std::size_t m_OptionsPerPage = 11;
-		bool m_Sounds = false;
+		bool m_Sounds = true;
 
 		std::int32_t m_OpenDelay = 200;
 		std::int32_t m_BackDelay = 300;
