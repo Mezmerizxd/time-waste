@@ -53,25 +53,24 @@
 
 namespace TimeWaste
 {
-	using namespace std::chrono_literals;
-	
-	template <typename T>
-	using comptr = Microsoft::WRL::ComPtr<T>;
+using namespace std::chrono_literals;
 
-	inline HMODULE g_hmodule{};
-	inline HANDLE g_main_thread{};
-	inline DWORD g_main_thread_id{};
-	inline std::atomic_bool g_running{ true };
-	
-	struct stackwalker : public StackWalker
+template<typename T> using comptr = Microsoft::WRL::ComPtr<T>;
+
+inline HMODULE g_hmodule{};
+inline HANDLE g_main_thread{};
+inline DWORD g_main_thread_id{};
+inline std::atomic_bool g_running{ true };
+
+struct stackwalker : public StackWalker
+{
+	using StackWalker::StackWalker;
+
+	void OnOutput(LPCSTR szText) override
 	{
-		using StackWalker::StackWalker;
+		LOG_INFO(szText);
+	}
+};
 
-		void OnOutput(LPCSTR szText) override
-		{
-			LOG_INFO(szText);
-		}
-	};
-
-	inline stackwalker g_stackwalker;
+inline stackwalker g_stackwalker;
 }

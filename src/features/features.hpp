@@ -3,27 +3,27 @@
 
 namespace TimeWaste
 {
-	class Features
-	{
-	public:
-		void GiveAllWeaponsToPlayer(uint32_t Player);
+class Features
+{
+public:
+	void GiveAllWeaponsToPlayer(uint32_t Player);
 
-        void script_init();
-		void script_on_tick();
-		static void script_func();
+	void script_init();
+	void script_on_tick();
+	static void script_func();
 
-    public:
-		Entity plyrPedId{};
-		Player plyrId{};
+public:
+	Entity plyrPedId{};
+	Player plyrId{};
 
-        // Self
-        bool self_godmode{};
-		bool self_never_wanted{};
-		bool self_no_ragdoll{};
-		bool self_super_jump{};
-		bool self_fast_run{};
-	};
+	// Self
+	bool self_godmode{};
+	bool self_never_wanted{};
+	bool self_no_ragdoll{};
+	bool self_super_jump{};
+	bool self_fast_run{};
+};
 
-	inline Features g_features;
-    inline std::unique_ptr<TimeWaste::Features> g_Features;
+inline Features g_features;
+inline std::unique_ptr<TimeWaste::Features> g_Features;
 }

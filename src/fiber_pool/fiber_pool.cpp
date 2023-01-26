@@ -5,49 +5,49 @@
 
 namespace TimeWaste
 {
-	fiber_pool::fiber_pool(std::size_t num_fibers)
+fiber_pool::fiber_pool(std::size_t num_fibers)
+{
+	for (std::size_t i = 0; i < num_fibers; ++i)
 	{
-		for (std::size_t i = 0; i < num_fibers; ++i)
-		{
-			g_script_manager.add_script(std::make_unique<script>(&fiber_func));
-		}
-
-		g_fiber_pool = this;
+		g_script_manager.add_script(std::make_unique<script>(&fiber_func));
 	}
 
-	fiber_pool::~fiber_pool()
-	{
-		g_fiber_pool = nullptr;
-	}
+	g_fiber_pool = this;
+}
 
-	void fiber_pool::queue_job(std::function<void()> func)
-	{
-		if (func)
-		{
-			std::lock_guard lock(m_mutex);
-			m_jobs.push(std::move(func));
-		}
-	}
+fiber_pool::~fiber_pool()
+{
+	g_fiber_pool = nullptr;
+}
 
-	void fiber_pool::fiber_tick()
+void fiber_pool::queue_job(std::function<void()> func)
+{
+	if (func)
 	{
-		std::unique_lock lock(m_mutex);
-		if (!m_jobs.empty())
-		{
-			auto job = std::move(m_jobs.top());
-			m_jobs.pop();
-			lock.unlock();
-
-			std::invoke(std::move(job));
-		}
+		std::lock_guard lock(m_mutex);
+		m_jobs.push(std::move(func));
 	}
+}
 
-	void fiber_pool::fiber_func()
+void fiber_pool::fiber_tick()
+{
+	std::unique_lock lock(m_mutex);
+	if (!m_jobs.empty())
 	{
-		while (true)
-		{
-			g_fiber_pool->fiber_tick();
-			script::get_current()->yield();
-		}
+		auto job = std::move(m_jobs.top());
+		m_jobs.pop();
+		lock.unlock();
+
+		std::invoke(std::move(job));
 	}
+}
+
+void fiber_pool::fiber_func()
+{
+	while (true)
+	{
+		g_fiber_pool->fiber_tick();
+		script::get_current()->yield();
+	}
+}
 }
