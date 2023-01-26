@@ -404,3 +404,4 @@ XenosCurrentProfile.xpr
 **/*.vcxproj
 **/*.vcxproj.filters
 Injector.exe
+build.sh

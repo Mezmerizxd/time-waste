@@ -7,6 +7,7 @@ class Features
 {
 public:
 	void GiveAllWeaponsToPlayer(uint32_t Player);
+	void EnableWeaponTeleportBullets();
 
 	void script_init();
 	void script_on_tick();
@@ -17,11 +18,14 @@ public:
 	Player plyrId{};
 
 	// Self
-	bool self_godmode{};
-	bool self_never_wanted{};
-	bool self_no_ragdoll{};
-	bool self_super_jump{};
-	bool self_fast_run{};
+	bool self_godmode{ false };
+	bool self_never_wanted{ false };
+	bool self_no_ragdoll{ false };
+	bool self_super_jump{ false };
+	bool self_fast_run{ false };
+
+	// Weapon
+	bool weapon_teleport_bullets{ false };
 };
 
 inline Features g_features;

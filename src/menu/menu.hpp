@@ -9,6 +9,7 @@ enum Submenu : std::uint32_t
 	Self,
 	Lobby,
 	Weapon,
+	WeaponBullets,
 	Vehicle,
 	Teleport,
 	World,

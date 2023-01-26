@@ -62,6 +62,15 @@ void Menu::menu()
 		{
 			g_features.GiveAllWeaponsToPlayer(PLAYER::PLAYER_PED_ID());
 		});
+		sub->AddOption<SubOption>("Bullets", nullptr, WeaponBullets);
+	});
+
+	// WeaponBullets
+	g_interface.AddSubmenu<RegularSubmenu>("Bullets", WeaponBullets,
+	[](RegularSubmenu* sub)
+	{
+		sub->AddOption<BoolOption<bool>>("Teleport", nullptr,
+		&g_features.weapon_teleport_bullets, BoolDisplay::DefaultToggles);
 	});
 
 	// Vehicle
